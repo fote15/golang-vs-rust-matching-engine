@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"runtime"
+	"strconv"
 	"time"
 )
 
@@ -12,15 +14,30 @@ type BenchResult struct {
 	AvgLatencyNs float64
 }
 
-func runSingleBenchmark(n int, seed uint64, orders []OrderInput) (BenchResult, uint64, uint64, int, int, int, uint64, uint64) {
-	ob := NewOrderBook(n)
+func runStreamBenchmark(n int, seed uint64) (BenchResult, uint64, uint64, int, int, int, uint64, uint64) {
+	// Pre-allocate pool scaled to expected resting depth (~22% resting orders)
+	poolCap := n / 4
+	if poolCap < 1_000_000 {
+		poolCap = 1_000_000
+	}
+
+	ob := NewOrderBook(poolCap)
+	rng := NewXorshift64(seed)
 
 	runtime.GC()
 
 	start := time.Now()
-	for i := 0; i < n; i++ {
-		o := &orders[i]
-		ob.ProcessOrder(o.ID, o.Price, o.Quantity, o.Side)
+	for i := 1; i <= n; i++ {
+		r1 := rng.Next()
+		r2 := rng.Next()
+		r3 := rng.Next()
+
+		side := Side(r1 & 1)
+		priceOffset := int64(r2%200) - 100
+		price := uint64(10000 + priceOffset)
+		qty := 1 + (r3 % 100)
+
+		ob.ProcessOrder(uint64(i), price, qty, side)
 	}
 	elapsed := time.Since(start)
 
@@ -55,70 +72,33 @@ func runSingleBenchmark(n int, seed uint64, orders []OrderInput) (BenchResult, u
 
 func main() {
 	const seed uint64 = 0xDEADBEEFCAFE1234
-	const n = 100000
-	const iterations = 5
+	n := 100_000_000
+
+	if len(os.Args) > 1 {
+		if val, err := strconv.Atoi(os.Args[1]); err == nil && val > 0 {
+			n = val
+		}
+	}
 
 	fmt.Printf("========================================================\n")
 	fmt.Printf("             GO MATCHING ENGINE BENCHMARK               \n")
 	fmt.Printf("========================================================\n")
-	fmt.Printf("Workload: %d orders per run | %d iterations\n", n, iterations)
-	fmt.Printf("PRNG: Deterministic Xorshift64 (seed: 0x%X)\n", uint64(seed))
+	fmt.Printf("Orders to Process:      %d (%.1f Million)\n", n, float64(n)/1_000_000.0)
+	fmt.Printf("PRNG:                   Deterministic Xorshift64\n")
+	fmt.Printf("Seed:                   0x%X\n", seed)
 	fmt.Printf("--------------------------------------------------------\n")
+	fmt.Printf("Starting benchmark...\n")
 
-	// Pre-generate orders
-	warmupOrders := GenerateOrders(10000, seed)
-	runSingleBenchmark(10000, seed, warmupOrders)
-
-	orders := GenerateOrders(n, seed)
-
-	var results []BenchResult
-	var totalElapsed time.Duration
-	var minElapsed = time.Duration(1<<63 - 1)
-	var maxElapsed time.Duration
-
-	var trades, volume uint64
-	var restingB, restingA, totalLevels int
-	var bestBid, bestAsk uint64
-
-	for i := 1; i <= iterations; i++ {
-		res, t, v, rb, ra, lvls, bb, ba := runSingleBenchmark(n, seed, orders)
-		results = append(results, res)
-		totalElapsed += res.Elapsed
-		if res.Elapsed < minElapsed {
-			minElapsed = res.Elapsed
-		}
-		if res.Elapsed > maxElapsed {
-			maxElapsed = res.Elapsed
-		}
-		trades = t
-		volume = v
-		restingB = rb
-		restingA = ra
-		totalLevels = lvls
-		bestBid = bb
-		bestAsk = ba
-
-		fmt.Printf("  Iteration %d: %8.3f ms | %10.2f M ops/s | %6.2f ns/order\n",
-			i,
-			float64(res.Elapsed.Microseconds())/1000.0,
-			res.Throughput/1_000_000.0,
-			res.AvgLatencyNs,
-		)
-	}
-
-	avgElapsed := totalElapsed / iterations
-	avgOps := float64(n) / avgElapsed.Seconds()
-	avgLatency := float64(avgElapsed.Nanoseconds()) / float64(n)
-	bestOps := float64(n) / minElapsed.Seconds()
+	res, trades, volume, restingB, restingA, totalLevels, bestBid, bestAsk := runStreamBenchmark(n, seed)
 
 	fmt.Printf("--------------------------------------------------------\n")
 	fmt.Printf("SUMMARY (GO):\n")
-	fmt.Printf("  Best Time:         %.3f ms (%.2f M ops/s)\n", float64(minElapsed.Microseconds())/1000.0, bestOps/1_000_000.0)
-	fmt.Printf("  Average Time:      %.3f ms (%.2f M ops/s)\n", float64(avgElapsed.Microseconds())/1000.0, avgOps/1_000_000.0)
-	fmt.Printf("  Average Latency:   %.2f ns/order\n", avgLatency)
-	fmt.Printf("  Trades Executed:   %d\n", trades)
-	fmt.Printf("  Volume Matched:    %d\n", volume)
-	fmt.Printf("  Resting in Book:   %d (Bids: %d, Asks: %d)\n", restingB+restingA, restingB, restingA)
-	fmt.Printf("  Active Levels:     %d (Best Bid: %d, Best Ask: %d)\n", totalLevels, bestBid, bestAsk)
+	fmt.Printf("  Total Elapsed Time:  %v (%.2f ms | %.2f s)\n", res.Elapsed, float64(res.Elapsed.Microseconds())/1000.0, res.Elapsed.Seconds())
+	fmt.Printf("  Throughput:          %.2f orders/sec (%.2f M ops/s)\n", res.Throughput, res.Throughput/1_000_000.0)
+	fmt.Printf("  Average Latency:     %.2f ns/order\n", res.AvgLatencyNs)
+	fmt.Printf("  Trades Executed:     %d\n", trades)
+	fmt.Printf("  Volume Matched:      %d\n", volume)
+	fmt.Printf("  Resting in Book:     %d (Bids: %d, Asks: %d)\n", restingB+restingA, restingB, restingA)
+	fmt.Printf("  Active Price Levels: %d (Best Bid: %d, Best Ask: %d)\n", totalLevels, bestBid, bestAsk)
 	fmt.Printf("========================================================\n\n")
 }

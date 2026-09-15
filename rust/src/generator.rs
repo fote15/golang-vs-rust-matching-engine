@@ -23,6 +23,7 @@ impl Xorshift64 {
     }
 }
 
+#[allow(dead_code)]
 pub fn generate_orders(n: usize, seed: u64) -> Vec<Order> {
     let mut rng = Xorshift64::new(seed);
     let mut orders = Vec::with_capacity(n);
