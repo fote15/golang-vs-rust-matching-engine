@@ -4,9 +4,19 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1", features = ["rt", "net", "io-util", "sync", "macros"] }
+socket2 = { version = "0.6", features = ["all"] }
 
 [profile.release]
 opt-level = 3
-lto = true
+lto = "fat"
 codegen-units = 1
 panic = "abort"
+debug = false
+strip = true
+
+# Профиль для профилировки: та же оптимизация, но с символами.
+[profile.profiling]
+inherits = "release"
+debug = true
+strip = false

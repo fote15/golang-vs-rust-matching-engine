@@ -1,0 +1,44 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='600' viewBox='0 0 1000 600' font-family='-apple-system, Helvetica, Arial, sans-serif'>
+<rect width='1000' height='600' rx='16' fill='#1c1c1c'/>
+<text x='34' y='52' font-size='16' fill='#a3a39c'>Go, код автора</text>
+<text x='34' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>37.8 M ордеров/с</text>
+<text x='34' y='114' font-size='15' fill='#a3a39c'>2.65 ms на 100 000 ордеров</text>
+<text x='364' y='52' font-size='16' fill='#a3a39c'>Rust</text>
+<text x='364' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>103.5 M ордеров/с</text>
+<text x='364' y='114' font-size='15' fill='#a3a39c'>0.97 ms на 100 000 ордеров</text>
+<text x='694' y='52' font-size='16' fill='#a3a39c'>Отрыв</text>
+<text x='694' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>x2.7</text>
+<text x='694' y='114' font-size='15' fill='#a3a39c'>в каждом раунде после первого</text>
+<rect x='14' y='170' width='12' height='12' rx='2' fill='#3b82f6'/><text x='32' y='181' font-size='15' fill='#f2f2ee'>Go, код автора (не изменён)</text>
+<rect x='266' y='170' width='12' height='12' rx='2' fill='#f26b3a'/><text x='284' y='181' font-size='15' fill='#f2f2ee'>Rust</text>
+<line x1='90' x2='960' y1='548.0' y2='548.0' stroke='#2e2e2c'/>
+<text x='80' y='553.0' font-size='14' text-anchor='end' fill='#a3a39c'>0</text>
+<line x1='90' x2='960' y1='491.7' y2='491.7' stroke='#2e2e2c'/>
+<text x='80' y='496.7' font-size='14' text-anchor='end' fill='#a3a39c'>20</text>
+<line x1='90' x2='960' y1='435.3' y2='435.3' stroke='#2e2e2c'/>
+<text x='80' y='440.3' font-size='14' text-anchor='end' fill='#a3a39c'>40</text>
+<line x1='90' x2='960' y1='379.0' y2='379.0' stroke='#2e2e2c'/>
+<text x='80' y='384.0' font-size='14' text-anchor='end' fill='#a3a39c'>60</text>
+<line x1='90' x2='960' y1='322.7' y2='322.7' stroke='#2e2e2c'/>
+<text x='80' y='327.7' font-size='14' text-anchor='end' fill='#a3a39c'>80</text>
+<line x1='90' x2='960' y1='266.3' y2='266.3' stroke='#2e2e2c'/>
+<text x='80' y='271.3' font-size='14' text-anchor='end' fill='#a3a39c'>100</text>
+<line x1='90' x2='960' y1='210.0' y2='210.0' stroke='#2e2e2c'/>
+<text x='80' y='215.0' font-size='14' text-anchor='end' fill='#a3a39c'>120</text>
+<text transform='translate(28,379) rotate(-90)' font-size='14' text-anchor='middle' fill='#a3a39c'>M ордеров/с</text>
+<path d='M118.0,548 V487.0 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#3b82f6'/>
+<path d='M206.0,548 V328.9 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#f26b3a'/>
+<text x='177.0' y='576' font-size='15' text-anchor='middle' fill='#a3a39c'>раунд 1 (холодный)</text>
+<path d='M292.0,548 V459.3 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#3b82f6'/>
+<path d='M380.0,548 V286.8 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#f26b3a'/>
+<text x='351.0' y='576' font-size='15' text-anchor='middle' fill='#a3a39c'>раунд 2</text>
+<path d='M466.0,548 V445.1 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#3b82f6'/>
+<path d='M554.0,548 V261.2 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#f26b3a'/>
+<text x='525.0' y='576' font-size='15' text-anchor='middle' fill='#a3a39c'>раунд 3</text>
+<path d='M640.0,548 V446.1 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#3b82f6'/>
+<path d='M728.0,548 V260.4 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#f26b3a'/>
+<text x='699.0' y='576' font-size='15' text-anchor='middle' fill='#a3a39c'>раунд 4</text>
+<path d='M814.0,548 V445.6 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#3b82f6'/>
+<path d='M902.0,548 V261.7 a4,4 0 0 1 4,-4 h22 a4,4 0 0 1 4,4 V548 Z' fill='#f26b3a'/>
+<text x='873.0' y='576' font-size='15' text-anchor='middle' fill='#a3a39c'>раунд 5</text>
+</svg>

@@ -10,8 +10,10 @@ impl Xorshift64 {
         Self { state: s }
     }
 
+    /// Названо `next_u64`, а не `next`: одноимённый метод путается с
+    /// `Iterator::next` (clippy: should_implement_trait).
     #[inline(always)]
-    pub fn next(&mut self) -> u64 {
+    pub fn next_u64(&mut self) -> u64 {
         let mut v = self.state;
         v ^= v << 13;
         v ^= v >> 7;
@@ -26,9 +28,9 @@ pub fn generate_orders(n: usize, seed: u64) -> Vec<Order> {
     let mut orders = Vec::with_capacity(n);
 
     for i in 0..n {
-        let r1 = rng.next();
-        let r2 = rng.next();
-        let r3 = rng.next();
+        let r1 = rng.next_u64();
+        let r2 = rng.next_u64();
+        let r3 = rng.next_u64();
 
         let side = if (r1 & 1) == 0 { Side::Buy } else { Side::Sell };
         let price_offset = (r2 % 200) as i64 - 100;

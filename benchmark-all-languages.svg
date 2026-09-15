@@ -1,0 +1,72 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='640' viewBox='0 0 1000 640' font-family='-apple-system, Helvetica, Arial, sans-serif'>
+<rect width='1000' height='640' rx='16' fill='#1c1c1c'/>
+<text x='34' y='52' font-size='16' fill='#a3a39c'>Быстрее всех: ASM</text>
+<text x='34' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>116.4 M ордеров/с</text>
+<text x='34' y='114' font-size='15' fill='#a3a39c'>0.86 ms на 100 000 ордеров</text>
+<text x='364' y='52' font-size='16' fill='#a3a39c'>Go, код автора (не изменён)</text>
+<text x='364' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>37.0 M ордеров/с</text>
+<text x='364' y='114' font-size='15' fill='#a3a39c'>2.70 ms на 100 000 ордеров</text>
+<text x='694' y='52' font-size='16' fill='#a3a39c'>Отрыв ASM от Go</text>
+<text x='694' y='90' font-size='34' font-weight='600' fill='#f2f2ee'>x3.1</text>
+<text x='694' y='114' font-size='15' fill='#a3a39c'>протокол автора, медиана по раундам</text>
+<text x='34' y='170' font-size='15' fill='#a3a39c'>Протокол автора: прогрев 10k, 5 итераций по 100 000 ордеров, среднее; медиана по 7 раундам; один линейный масштаб</text>
+<line x1='90' x2='970' y1='560.0' y2='560.0' stroke='#2e2e2c'/>
+<text x='80' y='565.0' font-size='14' text-anchor='end' fill='#a3a39c'>0</text>
+<line x1='90' x2='970' y1='500.0' y2='500.0' stroke='#2e2e2c'/>
+<text x='80' y='505.0' font-size='14' text-anchor='end' fill='#a3a39c'>20</text>
+<line x1='90' x2='970' y1='440.0' y2='440.0' stroke='#2e2e2c'/>
+<text x='80' y='445.0' font-size='14' text-anchor='end' fill='#a3a39c'>40</text>
+<line x1='90' x2='970' y1='380.0' y2='380.0' stroke='#2e2e2c'/>
+<text x='80' y='385.0' font-size='14' text-anchor='end' fill='#a3a39c'>60</text>
+<line x1='90' x2='970' y1='320.0' y2='320.0' stroke='#2e2e2c'/>
+<text x='80' y='325.0' font-size='14' text-anchor='end' fill='#a3a39c'>80</text>
+<line x1='90' x2='970' y1='260.0' y2='260.0' stroke='#2e2e2c'/>
+<text x='80' y='265.0' font-size='14' text-anchor='end' fill='#a3a39c'>100</text>
+<line x1='90' x2='970' y1='200.0' y2='200.0' stroke='#2e2e2c'/>
+<text x='80' y='205.0' font-size='14' text-anchor='end' fill='#a3a39c'>120</text>
+<text transform='translate(28,380) rotate(-90)' font-size='14' text-anchor='middle' fill='#a3a39c'>M ордеров/с</text>
+<path d='M108.0,560 V214.8 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='130.0' y='202.8' font-size='14' text-anchor='middle' fill='#f2f2ee'>116.4</text>
+<text x='130.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>ASM</text>
+<text x='130.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>0.86 ms</text>
+<path d='M188.0,560 V263.4 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='210.0' y='251.4' font-size='14' text-anchor='middle' fill='#f2f2ee'>100.2</text>
+<text x='210.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>C</text>
+<text x='210.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>1.00 ms</text>
+<path d='M268.0,560 V265.8 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#f26b3a'/>
+<text x='290.0' y='253.8' font-size='14' text-anchor='middle' fill='#f2f2ee'>99.4</text>
+<text x='290.0' y='586' font-size='15' text-anchor='middle' fill='#f2f2ee'>Rust</text>
+<text x='290.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>1.01 ms</text>
+<path d='M348.0,560 V267.8 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='370.0' y='255.8' font-size='14' text-anchor='middle' fill='#f2f2ee'>98.7</text>
+<text x='370.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>C++</text>
+<text x='370.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>1.01 ms</text>
+<path d='M428.0,560 V317.5 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='450.0' y='305.5' font-size='14' text-anchor='middle' fill='#f2f2ee'>82.2</text>
+<text x='450.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>C#</text>
+<text x='450.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>1.22 ms</text>
+<path d='M508.0,560 V376.1 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8fb4f7'/>
+<text x='530.0' y='364.1' font-size='14' text-anchor='middle' fill='#f2f2ee'>62.6</text>
+<text x='530.0' y='586' font-size='15' text-anchor='middle' fill='#f2f2ee'>Go (flat)</text>
+<text x='530.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>1.60 ms</text>
+<path d='M588.0,560 V416.8 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='610.0' y='404.8' font-size='14' text-anchor='middle' fill='#f2f2ee'>49.1</text>
+<text x='610.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>NodeJS</text>
+<text x='610.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>2.04 ms</text>
+<path d='M668.0,560 V432.1 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='690.0' y='420.1' font-size='14' text-anchor='middle' fill='#f2f2ee'>44.0</text>
+<text x='690.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>Java</text>
+<text x='690.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>2.27 ms</text>
+<path d='M748.0,560 V453.1 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#3b82f6'/>
+<text x='770.0' y='441.1' font-size='14' text-anchor='middle' fill='#f2f2ee'>37.0</text>
+<text x='770.0' y='586' font-size='15' text-anchor='middle' fill='#f2f2ee'>Go (автор)</text>
+<text x='770.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>2.70 ms</text>
+<path d='M828.0,560 V505.2 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='850.0' y='493.2' font-size='14' text-anchor='middle' fill='#f2f2ee'>19.6</text>
+<text x='850.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>PHP</text>
+<text x='850.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>5.10 ms</text>
+<path d='M908.0,560 V550.5 a4,4 0 0 1 4,-4 h36.0 a4,4 0 0 1 4,4 V560 Z' fill='#8a8f98'/>
+<text x='930.0' y='538.5' font-size='14' text-anchor='middle' fill='#f2f2ee'>4.50</text>
+<text x='930.0' y='586' font-size='15' text-anchor='middle' fill='#a3a39c'>Python</text>
+<text x='930.0' y='606' font-size='12' text-anchor='middle' fill='#a3a39c'>22.24 ms</text>
+</svg>
